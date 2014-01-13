@@ -1,0 +1,8 @@
+<nav id="projects" xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/" >
+    <h1 class="widgettitle">Projects</h1>
+    <ul>
+        <py:for each="entry in entries">
+        	<li><a href="${entry.html_uri('projects')}" title="${entry.title}">${entry.title}</a></li>
+    	</py:for>
+    </ul>
+</nav>

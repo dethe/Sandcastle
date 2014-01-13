@@ -1,0 +1,5 @@
+<div id="tagcloud"  xmlns:py="http://genshi.edgewall.org/">
+    <b>Tagcloud (<a href="/tag/">All Tags</a>)</b><br />
+    <a py:for="tagname, html_uri, atom_uri, weight in tagCloud" href="$html_uri" style="font-size:${weight}px;">$tagname </a>
+</div>
+

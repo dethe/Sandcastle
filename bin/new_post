@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+site_directory = '/Users/delza/Sites/livingcode/'
+
+import subprocess
+import datetime
+import os
+from uuid import uuid4 as uuid
+from sandcastle.util import titleToPermalink
+
+def new_post():
+    title = raw_input('Title: ').encode('utf-8')
+    file_title = titleToPermalink(title)
+    date = datetime.date.today().isoformat()
+    filename = os.path.join(site_directory, 'src', 'entries', '%s_%s.txt' % (date, file_title))
+    stub = open(filename, 'w')
+    print >> stub, title
+    print >> stub, ''
+    print >> stub, '#published: %s' % date
+    print >> stub, '#tags: Python, Term1, Term2'
+    print >> stub, '#type: Journal Post'
+    print >> stub, '#uuid: %s' % uuid()
+    print >> stub, ''
+    print >> stub, 'text goes here'
+    stub.close()
+    subprocess.call(['mate', '-w', filename])
+    subprocess.call(['echo', 'OK to publish now'])    
+
+if __name__ == '__main__':
+    new_post()

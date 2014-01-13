@@ -1,0 +1,30 @@
+# Sandcastle Design Notes
+
+I have several goals for Sandcastle, some of which may end up being in conflict with each other.
+
+The first version of Sandcastle had the following properties:
+
+Built entirely client-side
+No database required
+Entirely static files served by Apache
+Supports tagging
+Supports Python code snippets
+Plaintext (Markup) files kept
+Supports Atom feeds for blog or tag
+Weak support for projects/miniprojects
+Archives organized by tag
+No comments
+
+Next version of Sandcastle:
+
+Built server-side
+May possibly use a database
+Dynamic pages served by Pylons/Genshi/fastcgi
+Supports tagging dynamically
+Versioned files
+Supports color-coded Python snippets
+Stores files in XHTML
+Supports Atom feeds for blog, entry (comments), tag, or project
+Excellent support for projects
+Archives organized by tag and searchable
+Comments with anti-spam technology and admin interface

@@ -1,0 +1,125 @@
+Comment Strategy based on "Stopping spambots with hashes and honeypots"
+(http://nedbatchelder.com/text/stopbots.html)
+
+1. Timestamp: seconds since Jan 1, 1970
+2. Spinner: MD5 hash of (timestamp, clients IP address, entry ID of blog post, and a secret)
+3. Field names are randomized, hashes of real field name, spinner and a secret. Spinner gets a fixed field name, but all others, including submission button, use hashed field names.
+4. Honeypots: invisible form fields
+
+Processing the POST data:
+
+1. Read spinner field and use it to check hashes of all real field names
+2. Timestamp is checked, make sure it is not too far into the past or the future
+3. Value of spinner is checked for tampering
+4. Make sure no honeypots have text
+5. Validate the rest of the data
+
+Python notes:
+
+hash:
+
+import md5
+hash = md5.new()
+hash.update(info)
+hash.update(data)
+...
+return hash.hexdigest() # returns 32-character string
+
+timestamp:
+
+import time
+seconds = int(time.time())
+
+EXPIRE = 60 * 15 # should 15 minutes be enough?
+# Also check to see if the time is too recent, i.e., if less than 15 seconds, chances are it was not posted by a human
+
+Also: 
+
+* new comments should be emailed to me
+* there needs to be a page where I can quickly delete multiple comments (arranged by reverse chronology?)
+* comments should be (invisibly) tagged with the article they are a comment on (and comment they are in reply to?)
+* comments should be subscribable (via Atom or email)
+* log rejected comments for later analysis, including remote IP info
+* require either email or url
+* require name
+* allowed tags: <a>, <p>, <i>, <b> ???
+* allow user to select to get emails when comments are updated?  Or an RSS feed?
+
+Fields:
+
+* Name
+* Email (with promise not to spam)
+* Webpage (with notice that search engines will not follow the link)
+* Comment
+
+Client's IP address:
+
+* WSGI environ['REMOTE_ADDR']
+
+
+One example:
+
+<form method="POST" ID="Form1"><input type="hidden" name="PHPSESSID" value="72f7ee127a3ed65b6aa6ff47a56f8413" />
+	<table width="100%" border="0" cellspacing="0" cellpadding="2" ID="Table2">
+		<tr>
+			<td width="15%">
+				<div class='label'>name:</div>
+			</td>
+			<td width="85%">
+				<input class='edit' type="text" name="f31c08c9476823958dbfb90d73664ca50" size="40" value="" ID="Text1">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class='label'>email:</div>
+			</td>
+			<td>
+				<div style="display:none">
+				Ignore this:
+				<input class='edit' type="text" name="f3e89c58e2ce07f31222fee71d79b4f7d" size="40">
+				</div>
+				<input class='edit' type="text" name="fff4a57c3fae178c80e2a72a100963ce2" size="40" value="" ID="Text2">
+				<div style="display:none">
+				Leave this empty:
+				<input class='edit' type="text" name="ff8c760295bf2bc9b19341e98d7fcf8db" size="40">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class='label'>www:</div>
+			</td>
+			<td>
+				<input class='edit' type="text" name="f07fd5743f27de7910374b664faaf862f" size="40" value="" ID="Text3">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div align="center" style="display:none">
+					Don't put anything here:
+					<textarea name="fbea0c4be693ad6bb1110afbaaee0ce90" wrap="VIRTUAL" rows="7"></textarea>
+				</div>
+				<div align="center">
+					<textarea name="f1865950e2a9a967f093e174b1d74b038" cols="40" wrap="VIRTUAL" rows="7" ID="Textarea1"></textarea>
+				</div>
+				<div align="center" style="display:none">
+					Leave this empty:
+					<textarea name="f5b15e97dee6e4838e26ee1591af203ee" wrap="VIRTUAL" rows="7"></textarea>
+				</div>
+			</td>
+		</tr>
+		<tr valign="top">
+			<td colspan="2">
+				<div align="right">
+					<input type="submit" name="fc5a8f56f56131cd0c150d603e6d4dd93" value="add it >>">
+					<span style="display:none">
+					<input type="submit" name="f5aad89d2b331269015af97109adf4123" value="I'm a spambot">
+					</span>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<input type='hidden' name='f50ac237f465356d75dd1fc390b50f73d' value='text/stopbots.html'>
+	<input type='hidden' name='spinner' value='6aa60f74b81a284dbbfe88c398c4b031'>
+	<input type='hidden' name='f9aa94298151ba24e250f787a9cea7a29' value='1181451969'>
+</form>

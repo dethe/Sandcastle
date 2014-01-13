@@ -1,0 +1,18 @@
+<nav id="twitter_feed" xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
+    <h1>Twitter Updates</h1>
+    <ul>
+        <py:for each="entry in entries">
+        <li>
+            <article>
+                <img src="/images/star.png" title="Favourited by Dethe" py:if="entry.fave" />
+                <py:if test="entry.author_link">
+                    <a href="${entry.author_link}" title="${entry.author_name}">${entry.author_nick}:</a>
+                </py:if>
+                <py:if test="not entry.author_link">${entry.author_nick}:</py:if>
+                ${Markup(entry.content)}
+                <a href="${entry.link}"><time datetime="${entry.timestamp}" pubdate="pubdate">${entry.time} ago</time></a>
+            </article>
+        </li>
+        </py:for>
+    </ul>
+</nav>

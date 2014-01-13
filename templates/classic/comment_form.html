@@ -1,0 +1,30 @@
+<?python
+	c = controller
+?>
+
+<form method="POST" id="comment_form" action="/comment/add/${c.blog_id}">
+	<div style="display:none">Ignore this: <input type="text" class="edit" name="${c.honeypot1}" size="40" /></div>
+	<!--! Name: -->
+    <label for="${c.hashname}">name:</label> <input type="text" class="edit" name="${c.hashname}" size="40" id="${c.hashname}"/><br />
+    <div style="display:none">Leave this empty: <input type="text" class="edit" name="${c.honeypot2}" size="40" /></div>
+    <div style="display:none">Ignore this: <input type="text" class="edit" name="${c.honeypot3}" size="40" /></div>
+    <!--! Email: -->
+    <label for="${c.hashemail}">email:</label> <input type="text" class="edit" name="${c.hashemail}" size="40" id="${c.hashemail}"/><br />
+    <div style="display:none">Leave this empty: <input type="text" class="edit" name="${c.honeypot4}" size="40" /></div>
+    <div style="display:none">Ignore this: <input type="text" class="edit" name="${c.honeypot5}" size="40" /></div>
+    <!--! Website: -->
+    <label for="${c.hashurl}">website:</label> <input type="text" class="edit" name="${c.hashurl}" size="40" id="${hashurl}"/><br />
+    <div style="display:none">Leave this empty: <input type="text" class="edit" name="${c.honeypot6}" size="40" /></div>
+    <div style="display:none">Don\'t put anything here: <textarea name="${c.honeypot7}" wrap="VIRTUAL" rows="7"></textarea></div>
+    <!--! Comment: -->
+    <textarea name="${c.hashcomment}" cols="40" wrap="VIRTUAL" rows="7"></textarea><br />
+    <div style="display:none">This field should stay blank: <textarea name="${c.honeypot8}" wrap="VIRTUAL" rows="7"></textarea></div>
+	<span style="display:none"><input type="submit" name="${c.honeypot9}" value="spam: it\'s not just for breakfast anymore" /></span>
+	<!--! Submit: -->
+    <input type="submit" name="${c.hashsubmit}" value="add it" /><br />
+	<span style="display:none"><input type="submit" name="${c.honeypot10}" value="spam: it\'s not just for breakfast anymore" /></span>
+	<input type="hidden" name="${c.honeypot11}" value="spam sucks" />
+    <input type="hidden" name="${c.hashtimestamp}" value="${c.timestamp}" /><br />
+    <input type="hidden" name="spinner" value="${c.spinner}" /><br />
+	<input type="hidden" name="${c.honeypot12}" value="spam sucks" />
+</form>

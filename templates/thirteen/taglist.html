@@ -1,0 +1,6 @@
+<!-- Tag Index -->
+<article id="entry" xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
+    <py:for each="tagname, html_uri, atom_uri, weight, number in allTags">
+        <p><a href="${html_uri}">$tagname</a> ($number)</p>
+    </py:for>
+</article>

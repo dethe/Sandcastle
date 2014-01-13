@@ -1,0 +1,131 @@
+Minimum Required to Declare Victory:
+
+* Login for admin stuff
+* Fix technorati tags
+* Unlink the update and Web 3.0 posts, but make existing links to them still work
+* Add picture to entry editor
+* Bookmarklet to add a new entry
+* Resized icon, logo, header graphic
+* Logo == favicon
+* Copyright statement (CC Attribution/Non commercial)
+* Add new entry
+* Edit entry
+* Persist comments
+* Convert comments to HTML and clean the HTML
+* Preview comments
+* Add anti-spam tests for comments
+* Clean up comment code
+* Integrate comments with Sandcastle
+  - Add to page 
+  - Email to me
+  - Atom feed
+  - Interface for deleting, viewing comments marked as spam
+* file locking for comments
+
+
+[Done] Get Page wrapping the return of each controller without having to add code for each one individually.
+[Done] Client-side includes
+
+New controller: Debug
+New controller: Todo
+New component: Recent entries
+New component: Del.icio.us links
+New controller: Wish List
+Atompub API
+Plugin Architecture
+OpenID Support
+OpenAuth support
+Open Social support
+Unit tests
+Javascript-based styling?
+Templates for microformats
+Add config stuff to debug page
+Setup.py to build, install, package, deploy, and upload to cheeseshop
+
+
+Project
+=======
+
+* Source code repo
+* Latest version
+* Discussion list
+* Bug reports
+* Feature requests
+* Related posts
+* Atom feeds
+* Related articles
+* Related links
+* Related pictures
+
+Admin
+=====
+
+* Edit "About"
+* Edit links
+* Edit Project sidebar
+* Add new project
+* Edit project
+
+Books you should be reading (App)
+=================================
+
+* Build for Facebook and Open Social
+* Enter by author/title or ISBN (or bookmarklet)
+* Leverage Amazon association
+* Ads OK
+* Auto-fill missing info
+* Add to my list or recommend to another
+* Single-click to remove ("Got it" or "never mind")
+* Show prices (at different venues?)
+* Mail me when it goes on sale?
+
+Advantages of Sandcastle 2
+==========================
+
+* Most content is static files
+* No database: all content in readable text files
+* Rapidly changing content seperate from infrequently changed content
+* Dynamic (CGI) services kept to a bare minimum
+* Restful
+* Atom-based
+* Leverages Microformats
+* Support for multiple projects and datatypes
+* Pluggable88
+
+
+Webapps in general
+==================
+
+* Tags
+* Atom fields and streams
+* Templates to add, view, and aggregate
+* Microformats as basis for types
+* Presence
+* Messaging
+* Subscribe to anything
+* User-controlled layout
+* Ease of use (dates, image, etc.)
+* Stand-alone, offline use
+* Collaboration
+* Multiple forms of I/O: mail, im, web, cellphone, app, facebook
+* Reward users
+* Discovery
+
+Command-line tools
+==================
+
+* Make gradients
+* Buttons
+* Rounded corners
+* Maintain taglib
+* Maintain atom feeds
+
+Much Later?
+===========
+
+* Del.icio.us integration
+* Pump old links through del.icio.us
+* PftFoI
+* Flickr integration
+
+

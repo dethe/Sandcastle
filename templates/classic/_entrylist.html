@@ -1,0 +1,22 @@
+<!-- Index -->
+<div id="entry">
+    <h3>$title</h3>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Published</th>
+            <th>Updated</th>
+            <th>Permalink</th>
+            <th>Atom Entry</th>
+        </tr>
+        <py:for each="entry in entries">
+            <tr>
+                <td>$entry.title</td>
+                <td>$entry.attrs['published']_date</td>
+                <td>$entry.attrs['publishe']_date</td>
+                <td><a href="${entry.permalink()}" class="html_link">HTML</a></td>
+                <td><a href="${entry.atom_uri()}" class="atom_link">Atom</a></td>
+            </tr>
+        </py:for>
+    </table>
+</div>

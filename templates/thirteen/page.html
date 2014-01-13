@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/" xmlns:xi="http://www.w3.org/2001/XInclude" lang="en">
+    <xi:include href="head.html" />
+    <body>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <div id="body_wrapper">
+        <header id="header">
+            <hgroup>
+                <h1 id="title"><a href="/">Living Code</a></h1>
+                <h2>A program is a process, not a thing</h2>
+            </hgroup>
+            <!-- Got to put something for these links to point to
+            <a class="nav" href="about/">About</a>
+            <a class="nav" href="archives/">Archives</a>
+            <a class="nav" href="projects/">Projects</a>
+            -->
+        </header>
+        <section id="content">
+            <py:if test="type != 'Entry'">
+                <h2>${title}</h2>
+            </py:if>
+            <py:if test="type == 'Index'">
+                <py:if test="projects">
+                <section>
+                    <h1>Projects</h1>
+                    <ul>
+                        <py:for each="project in projects">
+                        <li><a href="${project.html_uri()}">${project.title}</a> ${project.tagline}</li>
+                    </py:for>
+                    </ul>
+                </section>
+                </py:if>
+                <section>
+                    <h1>Entries</h1>
+                    <ul>
+                        <py:for each="entry in entries">
+                            <li><a href="${entry.html_uri()}">${entry.title}</a> <time datetime="${entry.published}">${entry.published}</time></li>
+                        </py:for>
+                    </ul>
+                </section>
+            </py:if>
+            <py:if test="type == 'Tag Index'">
+                <xi:include href="taglist.html" />
+            </py:if>
+            <py:if test="type == 'Entry'">
+                ${Markup(entry.content())}
+                <!-- These don't work
+                <span class="previous" py:if="entry.prev_link">Previous: <a href="${entry.prev_link}">$entry.prev_title</a></span>
+                <span class="next" py:if="entry.next_link">Next: <a href="${entry.next_link}">$entry.next_title</a></span>
+                -->
+            </py:if>
+        </section><!-- end #content -->
+        <xi:include href="adbar.html" />
+        </div><!-- end #body_wrapper -->
+        <script>
+    $.fn.extend({
+        include: function(){
+            this.each(function(){
+                var self = $(this);
+                var url = self.attr('href');
+                $.get(url, null, function(data){
+                    self.replaceWith(data);
+                });
+            });
+        }
+    });
+    $(function(){
+        $('a[rel=include]').include();
+    });
+    </script>
+    <script><!-- Google Analytics Tracker -->
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-3380570-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
+    </script>
+    </body>
+</html>

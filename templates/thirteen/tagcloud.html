@@ -1,0 +1,9 @@
+<nav id="tagcloud"  xmlns:py="http://genshi.edgewall.org/">
+    <h1>Top Tags (<a href="/tags/">All Tags</a>)</h1>
+    <ul class="inline">
+        <py:for each="tagname, html_uri, _, weight in tagCloud">
+            <li class="tag${weight}"><a href="$html_uri">$tagname</a></li>
+        </py:for>
+    </ul>
+</nav>
+

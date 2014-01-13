@@ -1,0 +1,27 @@
+<!-- Journal Post -->
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
+
+ <span py:if="entry.prev_link" class="previous">Previous: <a href="/entries/${entry.attrs['prev_link']}.html">${entry.attrs['prev_title']}</a></span>
+ <span py:if="entry.next_link" class="next">Next: <a href="/entries/${entry.attrs['next_link']}.html">${entry.attrs['next_title']}</a></span>
+
+ <div id="entry">
+     <h3>$entry.title</h3>
+     ${Markup(entry.parsedcontent())}
+
+     <p id="taglist">Tags:
+         <py:with vars="sep=''" />
+         <py:for each="(tag, taguri) in entry.taglist()">
+             $sep <a href="${taguri}" class="tag" rel="tag">$tag</a>
+             <py:with vars="sep=', '" />
+         </py:for>
+     </p>
+
+     <p id="whowhen">[<a href="${entry.html_uri()}" class="permalink">Permalink</a>]
+     <span class="when">Posted on $entry.attrs['published']</span>
+     <span class="who">by <a href="mailto:$config.user_email">$config.user_name</a></span></p>
+ </div>
+
+ <span class="previous" py:if="entry.prev_link">Previous: <a href="/entries/${entry.attrs['prev_link']}.html">${entry.attrs['prev_title']}</a></span>
+ <span class="next" py:if="entry.next_link">Next: <a href="/entries/${entry.attrs['next_link']}.html">${entry.attrs['next_title']}</a></span>
+
+</div>

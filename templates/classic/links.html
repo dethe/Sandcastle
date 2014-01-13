@@ -1,0 +1,13 @@
+<div id="links" xmlns:py="http://genshi.edgewall.org/">
+    <b>Links</b><br />
+    <py:for each="title,uri in GLOBAL_LINKS()">
+        <py:choose>
+            <py:when test="uri">
+                <a href="$uri">${Markup(title)}</a><br />
+            </py:when>
+            <py:otherwise>
+                <b>$title</b><br /> 
+            </py:otherwise>
+        </py:choose>
+    </py:for>
+</div>

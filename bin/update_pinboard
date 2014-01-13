@@ -1,0 +1,5 @@
+#!/usr/bin/env python2.6
+
+from sandcastle.entrylist import EntryList
+
+EntryList().generateBookmarks()

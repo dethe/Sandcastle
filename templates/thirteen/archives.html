@@ -1,0 +1,8 @@
+<nav id="archives"  xmlns:py="http://genshi.edgewall.org/">
+    <h1 class="widgettitle">Archives</h1>
+	<ul class="inline">
+	    <py:for each="year in sorted(years.keys())">
+	        <li><a href="/archives/${year}" title="${year} archives">${year}</a></li>
+        </py:for>
+	</ul>
+</nav>

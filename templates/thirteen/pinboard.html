@@ -1,0 +1,9 @@
+<nav id="bookmarks_widget"  xmlns:py="http://genshi.edgewall.org/">
+    <h1>Pinboard Links [<a href="http://feeds.pinboard.in/rss/u:dethe">subscribe</a>]</h1>
+    <ul>
+        <py:for each="entry in entries[:10]">
+            <li><a href="${entry.link}" title="${entry.summary}">${entry.title}</a>
+            </li>
+        </py:for>
+    </ul>
+</nav>

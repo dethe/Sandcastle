@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:py="http://genshi.edgewall.org/">
+    <id>$entry.uuid</id>
+    <title>$entry.title</title>
+    <updated>$entry.attrs['published']</updated>
+    <published>$entry.attrs['published']</published>   
+    <author>
+        <name>$config.user_name</name>
+        <uri>$config.user_uri</uri>
+        <email>$config.user_email</email>
+    </author>
+    <content type="xhtml">
+        <div xmlns="http://www.w3.org/1999/xhtml">${Markup(entry.parsedcontent())}</div>
+    </content>
+	<py:for each="(tag, taguri) in entry.taglist()">
+		<category term="$tag" />
+	</py:for>
+    <link rel="alternate" href="${entry.html_uri()}"/> <!-- Permalink for this article in HTML -->
+</entry>

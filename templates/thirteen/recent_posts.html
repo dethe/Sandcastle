@@ -1,0 +1,8 @@
+<nav id="recent_posts" xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/" >
+    <h1 class="widgettitle">Recent Posts</h1>
+    <ul>
+        <py:for each="entry in entries">
+        	<li><a href="${entry.html_uri()}" title="${entry.title}">${entry.title}</a></li>
+    	</py:for>
+    </ul>
+</nav>

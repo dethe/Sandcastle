@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rsync --verbose --progress --stats --compress --rsh=/usr/bin/ssh --recursive --times --links --exclude .DS_Store --exclude .Trash --exclude .git --exclude *.bak --exclude *~ --exclude *.pyc --exclude *.pyo --exclude .backup --exclude .git livingcode:livingcode/ /Users/delza/Sites/livingcode_live/

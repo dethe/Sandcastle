@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <head>
+        <title>${config.site_title}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="MSSmartTagsPreventParsing" content="true" />
+        <meta name="generator" content="Sandcastle" />
+        <meta name="template" content="page.html" />
+        <link rel="shortcut icon" href="${config.site_uri}/image/favicon.ico" />
+        <link rel="alternate" type="application/atom+xml" title="${config.site_title}"      
+            href="/index.atom" />
+        <link rel="search" href="/"
+              type="application/opensearchdescription+xml"
+              title="${config.site_title}" />   
+        <link rel="stylesheet" type="text/css" media="screen, projection" href="/css/blueprint/screen.css" />
+        <link rel="stylesheet" type="text/css" media="print" href="/css/blueprint/print.css" />
+        <link rel="stylesheet" type="text/css" href="/css/sand.css" />
+        <link rel="stylesheet" type="text/css" href="$css" py:if="css" />
+		<!-- compliance patch for microsoft browsers -->
+		<!--[if lt IE 7]>
+		<script src="/script/ie7/ie7-standard-p.js">
+		</script>
+		<![endif]-->
+		<script src="/js/jquery-1.2.1.min.js"/>
+        <script src="/js/sand.js"></script>
+        <script src="$js" py:if="js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="header" class="column span-24">
+                <a href="${config.site_uri}" id="icon"><img src="${config.site_icon}" alt="" /></a>
+                <a href="${config.site_uri}" id="logo"><img src="${config.site_logo}" alt="" /></a>
+                <h1>${config.site_title}</h1>
+                <h2>${config.site_tagline}</h2>
+                <div class="clearer">&nbsp;</div>
+            </div>
+            <div id="sidebar" class="column span-5 append-2">
+				<div id="search">
+					<form action="http://www.google.com/search" method="GET">
+						<span>Search</span>
+						<input size="15" name="as_q" />
+						<input type="hidden" name="hl" value="en" />
+						<input type="hidden" name="ie" value="UTF-8" />
+						<input type="hidden" name="btnG" value="Google+Search" />
+						<input type="hidden" name="as_qdr" value="all" />
+						<input type="hidden" name="as_occt" value="any" />
+						<input type="hidden" name="as_dt" value="i" />
+						<input type="hidden" name="as_sitesearch" value="livingcode.org" />
+					</form>
+				</div>
+				<div id="about_holder">&nbsp;</div>
+				<div id="links_holder">&nbsp;</div>
+				<div id="tagcloud_holder">&nbsp;</div>
+			</div>
+            <div id="content" class="column span-17 last">
+	            <!--! put body of page here -->
+	            ${Markup(content)}
+            </div> <!-- end content -->
+        </div> <!-- end page_container -->
+    </body>
+</html>

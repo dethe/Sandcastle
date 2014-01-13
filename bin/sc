@@ -1,0 +1,51 @@
+#!/usr/bin/env python2.6
+# -*- coding: utf-8 -*-
+
+from optparse import OptionParser
+from sandcastle.entry import Entry
+from sandcastle.entrylist import EntryList
+from sandcastle.attributedfile import AttributedFile
+from sandcastle.config import get_config
+import os
+import subprocess
+
+def build(sourcefile, config=None):
+    #print Entry(sourcefile, config=config).html()
+    print AttributedFile(sourcefile).text
+    
+def sync(server, config=None):
+    pass
+    
+def index(server=None, config=None):
+    pass      
+    
+def add(config=None, *files):
+    pass
+    
+def widgets(config):
+    entrylist = EntryList(config)
+    entrylist.stageWidgets()
+    
+def new(config=None):
+    entry = Entry()
+    entry.title = raw_input('Title: ').encode('utf-8')
+    entry.save()
+    subprocess.call(['mate', '-w', entry.text_filename()])
+    subprocess.call(['echo', 'OK to publish now'])    
+
+def main():
+    # Parse options and config file
+    parser = OptionParser()
+    parser.add_option("-c", "--config", dest="configfile",
+                      default=os.path.expanduser('~/.sandcastlerc'),
+                      help="choose a config file (default is ~/.sandcastlerc)",
+                      metavar="FILE")
+
+    options, args = parser.parse_args()
+    config = get_config(options.configfile)
+    #dispatch to command
+    cmd = args[0]
+    globals()[cmd](*(args[1:]), config=config)
+    
+    
+if __name__ == '__main__': main()

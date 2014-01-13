@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:py="http://genshi.edgewall.org/">
+<py:choose>
+    <py:when test="tag">
+        <id>urn:uuid:${config.site_uri}/tag/${tag}</id>
+        <title>${config.site_title}: $tag</title>
+        <link rel="alternate" type="text/html" href="/tags/${tag}/" title="${config.site_title}: ${tag}" />
+        <link rel="self" type="application/atom+xml" href="/tags/${tag}/index.atom" />
+    </py:when>
+    <py:otherwise>
+        <id>urn:uuid:${config.site_uri}</id>
+        <title>${config.site_title}</title>
+        <link rel="self" type="application/atom+xml" href="/${curr_url}" />
+        <link rel="first" type="application/atom+xml" href="/index.atom" />
+        <py:if test="prev_url">
+            <link rel="previous" type="application/atom+xml" href="/${prev_url}" />
+        </py:if>
+        <py:if test="next_url">
+            <link rel="next" type="application/atom+xml" href="/${next_url}" />
+        </py:if>
+        <link rel="last" type="application/atom+xml" href="/${last_url}" />
+    </py:otherwise>
+</py:choose>
+    <subtitle>${config.site_tagline}</subtitle>
+    <updated>${entries[-1]['published']}T12:34:56Z</updated>
+    <generator uri="http://livingcode.org/projects/sandcastle/" version="0.1">Sandcastle</generator>
+    <icon>${config.site_icon}</icon>
+    <logo>${config.site_logo}</logo>
+    <entry py:for="entry in entries">
+        <id>urn:uuid:$entry.uuid</id>
+        <title>$entry.title</title>
+        <updated>${entry.published}T12:34:56Z</updated>
+        <published>${entry.published}T12:34:56Z</published>   
+        <author>
+            <name>$config.user_name</name>
+            <uri>$config.user_uri</uri>
+            <email>$config.user_email</email>
+        </author>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">${Markup(entry.parsedcontent())}</div>
+        </content>
+        <category term="$tag" py:for="tag in entry.tags"/>
+        <link rel="alternate" type="text/html" href="${entry.html_uri()}"/> <!-- Permalink for this article in HTML -->
+        <rights>${entry.rights()}</rights>
+    </entry>
+</feed>

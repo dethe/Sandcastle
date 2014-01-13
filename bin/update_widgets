@@ -1,0 +1,18 @@
+#!/usr/bin/env python2.6
+# -*- coding: utf-8 -*-
+
+import sys
+sys.path.append('/home/delza')
+
+from sandcastle.config import set_config
+
+set_config(
+    'http://livingcode.org/',
+    '/home/delza/livingcode/')
+
+from sandcastle import widgets
+    
+if __name__ == '__main__':
+    widgets.generateBookmarks()
+    widgets.generateTwitterFeed()
+

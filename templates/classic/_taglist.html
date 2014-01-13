@@ -1,0 +1,18 @@
+<!-- Tag Index -->
+<div id="entry" xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <h3>All Tags</h3>
+    <table>
+        <tr>
+            <th>Tag</th>
+            <th>Index</th>
+            <th>Feed</th>
+        </tr>
+        <py:for each="tagname, html_uri, atom_uri, weight in allTags">
+            <tr>
+                <td style="font-size:${weight}px;">$tagname</td>
+                <td><a href="${html_uri}">HTML</a></td>
+                <td><a href="${atom_uri}">Atom</a></td>
+            </tr>
+        </py:for>
+    </table>
+</div>

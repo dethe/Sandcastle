@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys, os
+sys.path.append(os.path.split(os.getcwd())[0])
+
+from sandcastle.config import set_config
+from time import clock
+
+# must set config before importing anything else in sandcastle
+set_config(
+    'http://livingcode.org/',
+    '/Users/delza/Sites/livingcode/')
+
+from sandcastle.entrylist import EntryList
+        
+if __name__ == '__main__':
+    begin = clock()
+    list = EntryList()
+    middle = clock()
+    print '%.2f seconds to load  entry source' % (middle - begin)
+    list.stage_all()
+    end = clock()
+    print '%.2f seconds to generate entries (%.2f total)' % ((end - middle), (end - begin))
+    

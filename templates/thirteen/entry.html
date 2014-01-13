@@ -1,0 +1,19 @@
+<!-- Journal Post -->
+<article class="entry" xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
+    <h1><a href="${entry.html_uri()}">${entry.title}</a></h1>
+     ${Markup(entry.parsedcontent())}
+     <p id="taglist">Tags:
+         <py:with vars="sep=''">
+             <py:for each="(tag, taguri) in entry.taglist()">
+                 $sep <a href="${taguri}" class="tag" rel="tag">$tag</a>
+                 <py:with vars="sep=', '" />
+             </py:for>
+        </py:with>
+     </p>
+
+     <p id="whowhen">[<a href="${entry.html_uri()}" class="permalink">Permalink</a>]
+     <span class="when">Posted on ${entry['published']}</span>
+     <span class="who">by <a href="mailto:$config.user_email">$config.user_name</a></span>
+    </p>
+
+</article>

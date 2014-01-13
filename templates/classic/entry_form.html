@@ -1,0 +1,45 @@
+<?python
+	e = entry
+	c = controller
+?>
+
+<form method="POST" id="entry_form" action="/admin/entry/add_entry/${e.permalink()}">
+	<div id="left_column" class="column span-10 append-2">
+		<label for="entry_title">Title</label>
+		<input type="text" id="entry_title" name="entry_title"  value="${e.title}" class="title"/>
+		<br />
+		<label for="entry_picture">Picture</label>
+		<input type="file" id="entry_picture" name="entry_picture" />
+		<textarea id="entry_text" name="entry_text">
+		</textarea>
+		<label for="entry_tags">Tags</label>
+		<input type="text" id="entry_tags" name="entry_tags" class="text" />
+		<fieldset id="tags_holder">
+			<legend>Existing Tags</legend>
+		</fieldset>
+		<input type="submit" name="save" value="Save" />
+		<input type="submit" name="publish" value="Publish" />
+		<label for="do_not_update_flag">Minor Change</label>
+		<input id="do_not_update_flag" type="checkbox" name="minor_change" value="Minor Update" />
+	</div><!-- left_column -->
+	<div id="right_column" class="column span-5 last">
+		<fieldset style="text-align:right;">
+			<legend>Markup Style</legend>
+			<label for="markdown_markup">Markdown</label>
+			<input id="markdown_markup" type="radio" name="entry_format" value="Markdown" checked="true" />
+			<br />
+			<label for="textile_markup">Textile</label>
+			<input id="textile_markup" type="radio" name="entry_format" value="Textile" />
+			<br />
+			<label for="rest_markup">reStructured Text</label>
+			<input id="rest_markup" type="radio" name="entry_format" value="reStructured Text" />
+			<br />
+		</fieldset>
+		<fieldset id="help_holder">
+			<legend>Markup Help</legend>
+		</fieldset>
+		<script>
+			$('#help_holder').load('/help/markdown.html');
+		</script>
+	</div>
+</form>
